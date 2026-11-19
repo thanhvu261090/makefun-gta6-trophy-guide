@@ -3,23 +3,90 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA VI trophy checklist</title>
+<title>Leonida Trophy Guide — GTA VI, all 55 trophies</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <h1>GTA VI trophy checklist</h1>
-  <p id="progress">0 of 55 earned</p>
+<header class="hero">
+  <p class="kicker">Grand Theft Auto VI &middot; PlayStation 5 &middot; offline guide &amp; tracker</p>
+  <h1>Leonida Trophy Guide</h1>
+  <p class="lede">Every one of the 55 official trophies — name, description and grade as PlayStation publishes them — with a guide in our own words, a source beside each one, a roadmap to the platinum, and a checklist that remembers your progress.</p>
+  <div class="progress-wrap" aria-label="Progress">
+    <div class="progress-bar"><div id="progressFill" class="progress-fill" style="width:0%"></div></div>
+    <p id="progressText" class="progress-text">0 of 55 earned &middot; 0%</p>
+    <p id="gradeBreakdown" class="grade-breakdown"></p>
+  </div>
+  <div class="actions">
+    <button id="exportBtn" type="button">Export progress</button>
+    <label class="import-btn">Import progress <input id="importInput" type="file" accept="application/json,.json"></label>
+    <button id="resetBtn" type="button">Reset progress</button>
+  </div>
 </header>
-<div class="controls">
-  <label>Grade <select id="grade"><option value="all">All</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
-  <button id="export" type="button">Export progress</button>
-  <label class="import">Import progress <input id="import" type="file" accept="application/json"></label>
-</div>
-<table>
-  <thead><tr><th>Earned</th><th>Trophy</th><th>Grade</th><th>How to get it</th></tr></thead>
-  <tbody id="rows"></tbody>
-</table>
+
+<main>
+  <section class="controls" aria-label="Filters">
+    <label class="search-label">Search <input id="searchInput" type="search" placeholder="Trophy name, mission, place&hellip;" autocomplete="off"></label>
+    <fieldset class="kind-fieldset">
+      <legend>Kind</legend>
+      <div class="chips" id="kindChips">
+        <button type="button" data-kind="all" class="chip active">All 55</button>
+        <button type="button" data-kind="story" class="chip">Story</button>
+        <button type="button" data-kind="missable" class="chip">Missable</button>
+        <button type="button" data-kind="collectibles" class="chip">Collectibles</button>
+        <button type="button" data-kind="activities" class="chip">Activities</button>
+        <button type="button" data-kind="platinum" class="chip">Platinum &amp; 100%</button>
+        <button type="button" data-kind="online" class="chip">Online</button>
+      </div>
+    </fieldset>
+    <div class="toggles">
+      <label>Grade
+        <select id="gradeSelect">
+          <option value="all">All grades</option>
+          <option value="platinum">Platinum</option>
+          <option value="gold">Gold</option>
+          <option value="silver">Silver</option>
+          <option value="bronze">Bronze</option>
+        </select>
+      </label>
+      <label>Show
+        <select id="showSelect">
+          <option value="all">All trophies</option>
+          <option value="todo">Not earned yet</option>
+          <option value="earned">Earned only</option>
+        </select>
+      </label>
+      <label class="spoiler-toggle"><input id="spoilerToggle" type="checkbox" checked> Hide story spoilers until earned</label>
+    </div>
+    <p id="filterNote" class="filter-note"></p>
+  </section>
+
+  <section id="roadmap" class="roadmap" aria-label="Roadmap to the platinum">
+    <h2>Roadmap to the platinum</h2>
+    <p class="roadmap-intro" id="roadmapIntro"></p>
+    <ol id="roadmapList" class="roadmap-list"></ol>
+  </section>
+
+  <section aria-label="Trophy checklist">
+    <h2 id="listHeading">Checklist</h2>
+    <p class="list-note">Tick a trophy when you earn it — your progress is saved in this browser. Open a trophy to read its guide and its sources. Story trophies stay hidden while the spoiler setting is on and you have not earned them yet.</p>
+    <div id="trophyList" class="trophy-list"></div>
+    <p id="emptyNote" class="empty-note" hidden>No trophies match these filters.</p>
+  </section>
+</main>
+
+<footer class="footer">
+  <h2>About this guide</h2>
+  <ul>
+    <li><strong>The list:</strong> 55 trophies — 1 platinum, 2 gold, 6 silver, 46 bronze; 28 hidden on PlayStation until earned. All single-player; there are no online trophies.</li>
+    <li><strong>Time:</strong> around 200 hours to the platinum, most of it the 100% checklist. One playthrough is enough.</li>
+    <li><strong>Missable:</strong> only Positive Mental Attitude can be missed — Lucia&rsquo;s balcony meditation in Chapter 1. Everything else stays available after the story. There is no mission replay and no New Game Plus, so keep a manual save at the start of every chapter.</li>
+    <li><strong>Cheats:</strong> using a cheat disables trophies and saving on that save, so keep cheats off your trophy run.</li>
+    <li><strong>Sources:</strong> trophy names, descriptions and grades as published on PlayStation, listed by Exophase and PSNProfiles (reported by Push Square, 18 November 2026). Each guide is written in our own words and cites its sources — see the source links beside every trophy. Guides used: <a href="https://www.gtabase.com/articles/gta-6/gta-6-achievements-trophies-list-ps5-xbox-series">GTA Base</a>, <a href="https://outputlag.com/guides/gta-6-trophy-list/">Output Lag</a>, <a href="https://www.keengamer.com/articles/guides/gta-6-trophy-guide-platinum-roadmap-all-55-trophies/">KeenGamer</a>.</li>
+    <li><strong>Unconfirmed steps:</strong> where a trophy&rsquo;s exact steps were still unconfirmed at launch, the guide says so instead of guessing.</li>
+    <li><strong>Privacy:</strong> this guide runs entirely offline — it fetches nothing at run time — and your checklist never leaves your browser unless you export it yourself.</li>
+  </ul>
+  <p class="disclaimer">An unofficial fan guide. Not affiliated with Rockstar Games, Sony or PlayStation. No Rockstar logo, artwork or game imagery is used.</p>
+</footer>
 <script type="module" src="app.js"></script>
 </body>
 </html>
